@@ -1,0 +1,30 @@
+import com.rottentomotoes.*;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.lang.reflect.Type;
+import java.net.URL;
+import java.util.List;
+
+public class GsonTest {
+
+    public static void main(String[] args) throws Exception {
+        URL url = new URL("http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=yedukp76ffytfuy24zsqk7f5&q=Jack&page_limit=30");
+        InputStreamReader isr = new InputStreamReader(url.openStream());
+        BufferedReader br = new BufferedReader(isr);
+        //String str;
+        //str = br.readLine();
+        //JSONObject genreJsonObject = (JSONObject) JSONValue.parseWithException(str);
+        //
+        Gson gson = new Gson();
+
+        RottenTomatoesResponse lcs = gson.fromJson(br, RottenTomatoesResponse.class);
+        //System.out.println(new Gson().toJson(data));
+        // System.out.println(isr);
+        
+        System.out.println(lcs.getMovies().size());
+        System.out.println(lcs.getMovies().get(1).getTitle());
+    }
+}

@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+    <h:outputStylesheet library="css" name="style.css" />
+    <h:head>
+        <title>Buzz-Movie Selector::Login</title>
+    </h:head>
+    <h:body> 
+        <Center>
+            <img src="Logo.png" alt="Buzz-Movie Selector" style="width:1200px;height:350px;"/>
+            <h2>Welcome! Please Login: </h2>
+            <h:form>
+                <p:fieldset>
+                    <legend>Enter information:</legend>
+                    Enter your GT email: <h:inputText id="name" value="#{loginBean.inputUsername}"/><br/>
+                    Enter your password: <h:inputText id="password" value="#{loginBean.inputPassword}"/>
+                    <br/>Do not have an account? <h:commandLink action="register" value="Register" />
+                    <br/>forget your password? <h:commandLink action="forget" value="I forgot" />
+                </p:fieldset>
+                <br/>
+                <div class="red">#{loginBean.getOutputMsg()}</div>
+                <br/>
+                <p:commandButton value = "Login" icon="ui-icon-star" action="#{loginBean.login()}"/>
+                <p:commandButton  value="Cancel" icon="ui-icon-closethick" action="#{loginBean.logout()}"/> 
+            </h:form>
+        </Center>
+    </h:body>
+</html>

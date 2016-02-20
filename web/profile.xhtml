@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Buzz-Movie Selector::Edit Profile</title>
+    </h:head>
+    
+    <h:body>
+            <center><img src="Logo.png" alt="Buzz-Movie Selector" style="width:1000px;height:250px;"/></center>
+            <div class="content">
+        <h:form>
+            <Center>
+                <h1>Hi, #{loginBean.inputUsername}</h1>
+                <h2>Your profile:</h2>
+            </Center>
+            <p:accordionPanel multiple="true">
+                <p:tab title="Password: #{loginBean.getCurrentUser().getPassword()}">
+                    <h:panelGrid columns="2" cellpadding="10">
+                        <h:outputLabel for="passwrd" value="New password:" style="font-weight:bold" />
+                        <p:inputText id="password" value="#{loginBean.newPassword}" />
+                        <p:commandButton value="Reset" icon="ui-icon-check" action="#{loginBean.updatePassword()}"/>
+                    </h:panelGrid>
+                </p:tab>
+
+
+
+                <p:tab title="First Name: #{loginBean.getCurrentUser().getFirstname()}">
+                    <h:panelGrid columns="2" cellpadding="10">
+                        <h:outputLabel for="name" value="New first name:" style="font-weight:bold" />
+                        <p:inputText id="firstname" value="#{loginBean.newFirstname}" />
+                        <p:commandButton value="Edit" icon="ui-icon-check" action="#{loginBean.updateFirstname()}"/>
+                    </h:panelGrid>
+                </p:tab>
+
+                <p:tab title="Last Name: #{loginBean.getCurrentUser().getLastname()}">
+                    <h:panelGrid columns="2" cellpadding="10">
+                        <h:outputLabel for="name2" value="New last name:" style="font-weight:bold" />
+                        <p:inputText id="lastname" value="#{loginBean.newLastname}" />
+                        <p:commandButton value="Edit" icon="ui-icon-check" action="#{loginBean.updateLastname()}"/>
+                    </h:panelGrid>
+                </p:tab>
+
+                <p:tab title="Gender: #{loginBean.getCurrentUser().sexCtrl()}">
+                    <h:panelGrid columns="2" cellpadding="10">
+                        <h:outputText value="Select a gender:" />
+                        <p:selectOneButton value="#{loginBean.newSex}">
+                            <f:selectItem itemLabel="Male" itemValue="1"/>
+                            <f:selectItem itemLabel="Female" itemValue="2"/>
+                        </p:selectOneButton>
+                        <p:commandButton value="Submit" icon="ui-icon-check" action="#{loginBean.updateSex()}"/>
+                    </h:panelGrid>
+                </p:tab>
+
+                <p:tab title="Interest: ">
+                    <h:panelGrid>
+                        <h:outputLabel value="My interest: " />
+                        <h:outputText value="#{loginBean.getCurrentUser().getInterest()}" />
+                        <h:inputTextarea rows="10" cols="40" value="#{loginBean.newInterest}"/>
+                        <p:commandButton value="Edit" icon="ui-icon-check" action="#{loginBean.updateInterest()}"/>
+                    </h:panelGrid>
+                </p:tab>
+
+                <p:tab title="Major: #{loginBean.getCurrentUser().getMajor()}">
+                    <h:panelGrid>
+                        <p:outputLabel for="console" value="Major:" />
+                        <p:selectOneMenu id="console" value="#{loginBean.newMajor}" style="width:230px">
+                            <f:selectItem itemLabel="Aerospace Engineering" itemValue="Aerospace Engineering" />
+                            <f:selectItem itemLabel="Applied Mathematics" itemValue="Applied Mathematics" />
+                            <f:selectItem itemLabel="Architecture" itemValue="Architecture" />
+                            <f:selectItem itemLabel="Biochemistry" itemValue="Biochemistry" />
+                            <f:selectItem itemLabel="Biology" itemValue="Biology" />
+                            <f:selectItem itemLabel="Chemistry" itemValue="Chemistry" />
+                            <f:selectItem itemLabel="Civil Engineering" itemValue="Civil Engineering" />
+                            <f:selectItem itemLabel="Computer Engineering" itemValue="Computer Engineering" />
+                            <f:selectItem itemLabel="Computer Science" itemValue="Computer Science" />
+                            <f:selectItem itemLabel="Discrete Mathematics" itemValue="Discrete Mathematics" />
+                            <f:selectItem itemLabel="Economics" itemValue="Economics" />
+                            <f:selectItem itemLabel="Electrical Engineering" itemValue="Electrical Engineering" />
+                            <f:selectItem itemLabel="Environmental Engineering" itemValue="Environmental Engineering" />
+                        </p:selectOneMenu>
+                        <p:commandButton value="Submit" icon="ui-icon-check" action= "#{loginBean.updateMajor()}" />
+                    </h:panelGrid>
+                </p:tab>
+
+            </p:accordionPanel>
+            <p:commandButton value="Finish" icon="ui-icon-check" action="#{loginBean.updateUser()}"/>
+            <p:commandButton  value="Cancel"  action="welcome"/> 
+        </h:form>
+        </div>
+    </h:body>
+</html>
+

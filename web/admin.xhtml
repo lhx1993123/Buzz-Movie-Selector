@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Buzz-Movie Selector::Manage User List</title>
+    </h:head>
+    <h:body>
+        <center><img src="Logo.png" alt="Buzz-Movie Selector" style="width:500px;height:150px;"/></center>
+            <div class="content">
+        <h:form> 
+            <p:dataScroller value="#{adminController.userList}" var="user" chunkSize="100" mode="inline" scrollHeight="500">
+                <f:facet name="header">
+                    Scroll Down to Load More User
+                </f:facet>
+                <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+                    <p:outputPanel>
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputText value="Username:" />
+                            <h:outputText value="#{user.username}" style="font-weight: bold"/>
+
+                            <h:outputText value="Password:" />
+                            <h:outputText value="#{user.password}" style="font-weight: bold"/>
+
+                            <h:outputText value="Status:" />
+                            <h:outputText value="#{user.status}" style="font-weight: bold"/> 
+
+                            <p:selectOneMenu id="console" value="#{user.status}" style="width:230px">
+                                <f:selectItem itemLabel="Unban" itemValue="Active" />
+                                <f:selectItem itemLabel="Ban" itemValue="Banned" />
+                                <f:selectItem itemLabel="Unlock" itemValue="Active" />
+                            </p:selectOneMenu>
+                        </h:panelGrid>
+                    </p:outputPanel>
+                </h:panelGrid>
+                <p:separator/>
+
+            </p:dataScroller>
+            <p:commandButton value="Finish" icon="ui-icon-check" action="#{adminController.commit()}"/>
+            <p:commandButton  value="Cancel" icon="ui-icon-closethick" action="#{loginBean.logout()}"/> 
+        </h:form>
+        </div>
+    </h:body>
+</html>
+

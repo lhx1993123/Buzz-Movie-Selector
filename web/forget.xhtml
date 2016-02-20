@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:outputStylesheet library="css" name="style.css" />
+    <h:head>
+        <title>Buzz-Movie Selector::forgot the password</title>
+    </h:head>
+    <h:body>
+        <center>
+            <img src="Logo.png" alt="Buzz-Movie Selector" style="width:1000px;height:200px;"/>
+            <h1>Forget your password?</h1><br/><br/>
+            <h:form prependId="false">
+                <p:fieldset>
+                    <p:focus />
+                    <h:panelGrid id="grid" columns="2">
+                        <h:outputText value="GT Email: " /> 
+                        <p:inputText id="GT-Email" value="#{forgetPasswordController.email}" required="true" /><br/>
+                        <p:message for="GT-Email"/>                   
+                    </h:panelGrid>
+                </p:fieldset>  
+                <br/>
+                <div class="red">#{loginBean.getMessage()}</div>
+                <br/>    
+                <p:commandButton value="Send" icon="ui-icon-star" title="I am ready to Register!" action="#{forgetPasswordController.send()}" update="grid"></p:commandButton>   
+                <p:commandButton  value="Cancel" icon="ui-icon-closethick" onclick="cancel();"/> 
+                
+                <script>
+                    function cancel() {
+                        window.location.href="http://localhost:8080/Buzz-Movie-Selector/";
+                    }
+                </script>
+            </h:form>
+        </center>
+    </h:body>
+</html>

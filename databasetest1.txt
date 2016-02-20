@@ -1,0 +1,100 @@
+package abcd;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+/**
+ *
+ * @author xinmin shi
+ */
+public class Abcd {
+
+    /**
+     * @param args the command line arguments
+     */
+  public static void main (String[] args) {
+            //get connectiong to the database
+                Connection myConn = Database.openConnection();
+            try{
+
+            //create a statement
+                Statement myStmt = myConn.createStatement();
+            //execute a query
+                ResultSet myRs = myStmt.executeQuery("select * from User");
+            //process the result
+                while (myRs.next()){
+                    System.out.println(myRs.getString("username") + "," +myRs.getString("password"));
+                }
+                
+           
+                System.out.println("case 2 test: where");
+           
+            //execute a query
+                myRs = myStmt.executeQuery("select * from User where username='Yufan'");
+            //process the result
+                while (myRs.next()){
+                    System.out.println(myRs.getString("username") + "," +myRs.getString("password"));
+                }
+                
+                
+                 System.out.println("case 3 test:  insert");
+           
+                 
+            //execute a query
+                String query = "insert into User(username, password)"
+                    + " values (?, ?)";
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = myConn.prepareStatement(query);
+            //instert the value
+            preparedStmt.setString(1, "xinmin");
+            preparedStmt.setString(2, "12345");
+            // execute the preparedstatement
+            preparedStmt.execute();
+            myRs = myStmt.executeQuery("select * from User where username='xinmin'");
+            //process the result
+                while (myRs.next()){
+                    System.out.println(myRs.getString("username") + "," +myRs.getString("password"));
+                }
+            
+             System.out.println("case 4 test:  update");    
+            //process the result
+            query = "UPDATE User SET "
+                + "password = ? "
+                + "WHERE username ='xinmin'";
+            preparedStmt = myConn.prepareStatement(query);
+            //instert the value
+            preparedStmt.setString(1, "xinminx");
+            preparedStmt.execute();
+            myRs = myStmt.executeQuery("select * from User where username='xinmin'");
+            //process the result
+                while (myRs.next()){
+                    System.out.println(myRs.getString("username") + "," +myRs.getString("password"));
+                }
+            }
+            catch (Exception exc){
+                System.out.printf("There is something wrong.");
+            //exc.printStackTrace();
+            }
+            finally{
+                Database.closeConn(myConn);
+            }
+        }
+    
+}
+
+
+//下面是跑出来的结果
+//
+run:
+admin,12345
+user,pass
+Yufan,12345
+case 2 test: where
+Yufan,12345
+case 3 test:  insert
+xinmin,12345
+case 4 test:  update
+xinmin,xinminx
+成功构建 (总时间: 4 秒)

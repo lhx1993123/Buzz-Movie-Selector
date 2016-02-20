@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">  
+
+    <h:outputStylesheet library="css" name="style.css" />
+    <h:head>  
+        <title>Buzz-Movie Selector::Recommendations</title>    
+    </h:head> 
+    <h:body>
+        <div class="webname"><img src="webName.png" alt="Buzz-Movie Selector" style="width:500px;height:120px;"/></div>
+
+        <div class="background">
+            <div class="content">
+                <h:form id="form">
+                    <p:dataGrid var="movie" value="#{recommendationsController.movies}" columns="4"
+                                rows="12" paginator="true" id="movies"
+                                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                >
+
+                        <f:facet name="header">
+                            Recommendations
+                        </f:facet>
+                        <ui:include src="/moviePanel.xhtml" />
+                    </p:dataGrid>
+                    <ui:include src="/movieDialog.xhtml" />
+                </h:form>
+            </div>
+        </div>
+        <div class="logo"><img src="Buzz2.png" alt="Buzz-Movie Selector" style="width:200px;height:200px"></img></div>         
+        <ui:include src="/searchBar.xhtml" />
+        <ui:include src="/options.xhtml" />
+    </h:body>
+
+</html>
+
+

@@ -1,0 +1,22 @@
+public static void main (String[] args) {
+            //get connectiong to the database
+                Connection myConn = Database.openConnection();
+            try{
+
+            //create a statement
+                Statement myStmt = myConn.createStatement();
+            //execute a query
+                ResultSet myRs = myStmt.executeQuery("select * from User");
+            //process the result
+                while (myRs.next()){
+                    System.out.println(myRs.getString("username") + "," +myRs.getString("password"));
+                }
+            }
+            catch (Exception exc){
+                System.out.printf("There is something wrong.");
+            //exc.printStackTrace();
+            }
+            finally{
+                Database.closeConn(myConn);
+            }
+        }

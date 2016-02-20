@@ -1,0 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:body>
+        <div class="option">
+            <h:form class="option" style="z-index:100; position: absolute;">
+                <p:menuButton value="Options">
+                    <p:menuitem value="Home" action="welcome"  icon="ui-icon-home"/>
+                    <p:menuitem value="Edit Profile" action="profile"  icon="ui-icon-gear"/>
+                    <p:menuitem value="Recommendations" action="recommendations"  icon="ui-icon-lightbulb"/>
+                    <p:menuitem value="New DVD releases" action="newDVDreleases"  icon="ui-icon-lightbulb"/>
+                    <p:menuitem value="New Theater releases" action="newTheaterreleases"  icon="ui-icon-lightbulb"/>
+                    <p:menuitem value="Log Out" action="#{loginBean.logout()}" icon="ui-icon-power"/>
+                    <p:separator />
+                </p:menuButton>
+            </h:form>
+        </div>
+    </h:body>
+</ui:composition>
+

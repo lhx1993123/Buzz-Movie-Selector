@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:body>
+         <div class="media">
+             <div class="socialMedia">
+                 <!-- Facebook -->
+                    <img src="facebook.png" alt="Facebook" onclick="toFacebook()"/>
+                <script>
+                    function toFacebook() {
+                        window.open("http://www.facebook.com/sharer.php?u=http://localhost:8080/Buzz-Movie-Selector/p[title]=Buzz-Movie Selector", target="_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
+                    }
+                </script>
+ 
+                 <!-- Google+ -->
+                    <img src="google.png" alt="Google" onclick="toGoogle()"/>
+                <script>
+                    function toGoogle() {
+                        window.open("https://plus.google.com/share?url=http://localhost:8000/Buzz-Movie-Selector/", target="_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
+                    }
+                </script>
+    
+                <!-- Pinterest -->
+                <a href="javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());">
+                <img src="pinterest.png" alt="Pinterest" />
+                </a>
+    
+                <!-- Print -->
+                <a href="javascript:;" onclick="window.print()">
+                <img src="print.png" alt="Print" />
+                </a>
+    
+                <!-- Twitter -->
+                    <img src="twitter.png" alt="Twitter" onclick="toTwitter()"/>
+                <script>
+                    function toTwitter() {
+                        window.open("https://twitter.com/share?url=http://localhost:8080/Buzz-Movie-Selector/", target="_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
+                    }
+                </script>
+            </div>
+            </div>
+    </h:body>
+</ui:composition>

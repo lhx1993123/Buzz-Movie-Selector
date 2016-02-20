@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:outputStylesheet library="css" name="style.css" />
+    <h:head>  
+        <title>Buzz-Movie Selector::#{movieGridViewController.selectedMovie.title}</title>    
+    </h:head> 
+    <h:body>
+        <div class="webname"><img src="webName.png" alt="Buzz-Movie Selector" style="width:500px;height:120px;"/></div>
+
+        <div class="background">
+            <div class="content">
+                <p:tabView orientation="left">
+                    <p:tab title="#{movieGridViewController.selectedMovie.title}">
+                        <h:panelGrid columns="2" cellpadding="10">
+                            <p:graphicImage url="#{movieGridViewController.selectedMovie.posters.original}" style="height:150px;width:120px;"/>
+                            <h:outputText
+                                value="#{movieGridViewController.selectedMovie.synopsis}" />
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="Movie Info">
+                        <h:panelGrid columns="2" cellpadding="10">
+                            <p:dataList var="cast" value="#{movieGridViewController.selectedMovie.abridgedCast}" type="unordered">
+                                <f:facet name="header">
+                                    Casts:
+                                </f:facet>
+                                #{cast.name}
+                            </p:dataList><br/>
+                            <h:outputText value="Release Date: #{movieGridViewController.selectedMovie.releaseDates.theater}"/><br/>
+                            <h:outputText value="Critics Score: #{movieGridViewController.selectedMovie.ratings.criticsScore}"/><br/>
+                            <h:outputText value="Audience Score: #{movieGridViewController.selectedMovie.ratings.audienceScore}"/><br/>
+                            <h:outputText value="Runtime: #{movieGridViewController.selectedMovie.runtime} minutes"/><br/>
+                            <h:outputText value="Rating: #{movieGridViewController.selectedMovie.mpaaRating}"/>
+                        </h:panelGrid>
+                    </p:tab>
+
+                    <p:tab title="Ratings and Reviews">
+                        <h:panelGrid columns="1" style="width:100%" cellpadding="10">
+                 
+                            <p:dataList var="rating" value="#{movieGridViewController.ratingList}" type="definition">
+                                <f:facet name="header">
+                                    Ratings:
+                                </f:facet>
+                                <p:rating value="#{rating.scores}" readonly="true" />
+                                <h:outputText value="     "/>
+                                #{rating.comments}
+                                <p:separator/>
+                            </p:dataList><br/>
+                        </h:panelGrid>
+                    </p:tab>
+
+                    <p:tab title="Write Review">
+                        <h:panelGrid columns="2" cellpadding="10">
+                            <h:form>
+                                <big><h:outputText value="Rating:"/></big>
+                                <h:panelGrid columns="2" cellpadding="5">
+                                    <p:growl id="messages" showDetail="true" />
+                                    <p:rating value="#{movieGridViewController.scores}">
+                                        <p:ajax event="rate" listener="#{movieGridViewController.onrate}" update="messages" />
+                                        <p:ajax event="cancel" listener="#{movieGridViewController.oncancel}" update="messages" />
+                                    </p:rating>
+                                </h:panelGrid>
+                            </h:form>
+
+                            <br/><br/>
+
+                           <h:form>
+                               <h:inputTextarea rows="10" cols="90" value="#{movieGridViewController.comments}"/>
+                               <br/><br/>
+                                    <p:commandButton value="Submit"  icon="ui-icon-disk" action="#{movieGridViewController.submitRating}" onclick="back();"/>
+                           </h:form>       
+                 <script>
+                    function back() {
+                        confirm("Your review has been submitted! Thank you.");
+                    }
+                </script>
+                            
+                        </h:panelGrid>
+                    </p:tab>
+
+                </p:tabView>
+            </div>
+        </div>
+
+
+        <div class="logo"><img src="Buzz2.png" alt="Buzz-Movie Selector" style="width:200px;height:200px"></img></div>         
+
+        <div class="searchBox">
+            <h:form  class ="searchBox">
+                <h:inputText class = "search" value="#{searchMoviesController.keyWord}"/>
+                <p:commandButton style="height:63px;" class="submit" value = "Search" action="#{searchMoviesController.getMovieList()}"/>
+
+            </h:form>
+        </div>
+
+        <div class="option">
+            <h:form class="option" style="z-index:100;">
+                <p:menuButton value="Options">
+                    <p:menuitem value="Home" action="welcome"  icon="ui-icon-home"/>
+                    <p:menuitem value="Edit Profile" action="profile"  icon="ui-icon-gear"/>
+                    <p:menuitem value="Recommendations" action="recommendations"  icon="ui-icon-lightbulb"/>
+                    <p:menuitem value="New DVD releases" action="newDVDreleases"  icon="ui-icon-lightbulb"/>
+                    <p:menuitem value="New Theater releases" action="newTheaterreleases"  icon="ui-icon-lightbulb"/>
+                    <p:menuitem value="Log Out" action="#{loginBean.logout()}" icon="ui-icon-power"/>
+                    <p:separator />
+                </p:menuButton>
+            </h:form>
+        </div>
+        <ui:include src="socialMedia.xhtml"/>
+    </h:body>
+
+</html>

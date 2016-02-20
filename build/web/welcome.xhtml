@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">  
+
+    <h:outputStylesheet library="css" name="style.css" />
+    <h:head>  
+        <title>Buzz-Movie Selector::Home</title>    
+    </h:head> 
+    <h:body>
+        <div class="webname"><img src="webName.png" alt="Buzz-Movie Selector" style="width:500px;height:120px;"/></div>
+        <div class="background">
+            <div class="content">
+                <p:imageSwitch effect="shuffle">
+                    <ui:repeat value="#{imagesView.images}" var="image">
+                        <img src="#{image}" style="width:425px;height:599px;"/>
+                        <!--<p:graphicImage name="#{image}" />-->
+                    </ui:repeat>
+                </p:imageSwitch>       
+            </div>
+        </div>
+        <div class="logo"><img src="Buzz2.png" alt="Buzz-Movie Selector" style="width:200px;height:200px"></img></div>         
+
+        <div class="searchBox">
+            <h:form  class ="searchBox">
+                <h:inputText class = "search" value="#{searchMoviesController.keyWord}"/>
+                <p:commandButton style="height:63px;" class="submit" value = "Search" action="#{searchMoviesController.getMovieList()}"/>
+            </h:form>
+        </div>
+        <ui:include src="/options.xhtml" />
+        <ui:include src="socialMedia.xhtml"/>
+    </h:body>
+</html>
+
+
